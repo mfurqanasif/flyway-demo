@@ -1,0 +1,44 @@
+table "Demo"."orders" {
+  primaryKey = {
+    columns = [
+      "order_id"
+    ]
+    name = "orders_pkey"
+    objectType = primaryKey
+  }
+  owner = user1
+  columns = (
+    column "order_id" {
+      type = integer
+      null = NOT NULL
+      default = nextval('"Demo".orders_order_id_seq'::regclass)
+    }
+    column "customer_id" {
+      type = integer
+      null = NOT NULL
+    }
+    column "order_date" {
+      type = timestamp without time zone
+      default = CURRENT_TIMESTAMP
+    }
+    column "amount" {
+      type = numeric(10,2)
+      null = NOT NULL
+    }
+    column "status" {
+      type = character varying(20)
+      default = 'Pending'::character varying
+    }
+  )
+}
+
+foreignKey "Demo"."orders"."fk_customer" {
+  columns = [
+    "customer_id"
+  ]
+  referencedTable = "Demo"."customer"
+  referencedColumns = [
+    "customer_id"
+  ]
+}
+

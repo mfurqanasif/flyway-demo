@@ -1,0 +1,50 @@
+table "Demo"."customer" {
+  primaryKey = {
+    columns = [
+      "customer_id"
+    ]
+    name = "customer_pkey"
+    objectType = primaryKey
+  }
+  owner = user1
+  columns = (
+    column "customer_id" {
+      type = integer
+      null = NOT NULL
+      default = nextval('"Demo".customer_customer_id_seq'::regclass)
+    }
+    column "first_name" {
+      type = character varying(50)
+      null = NOT NULL
+    }
+    column "last_name" {
+      type = character varying(50)
+      null = NOT NULL
+    }
+    column "email" {
+      type = character varying(100)
+      null = NOT NULL
+    }
+    column "phone" {
+      type = character varying(20)
+    }
+    column "created_at" {
+      type = timestamp without time zone
+      default = CURRENT_TIMESTAMP
+    }
+  )
+}
+
+index "Demo"."customer_email_key" {
+  table = "Demo"."customer"
+  type = btree
+  columns = <
+    {
+      definition = email
+    }
+
+  >
+  isUnique = True
+  isConstraint = true
+}
+
