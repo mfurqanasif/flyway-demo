@@ -28,9 +28,6 @@ table "Demo"."customer" {
     column "phone" {
       type = character varying(20)
     }
-column "phone 2" {
-      type = character varying(20)
-    }
     column "created_at" {
       type = timestamp without time zone
       default = CURRENT_TIMESTAMP
