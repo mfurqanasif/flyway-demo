@@ -28,10 +28,6 @@ table "Demo"."customer" {
     column "phone" {
       type = character varying(20)
     }
-column "twitter_id" {
-      type = character varying(50)
-      null = NOT NULL
-    }
     column "created_at" {
       type = timestamp without time zone
       default = CURRENT_TIMESTAMP
